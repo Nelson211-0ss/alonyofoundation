@@ -6,12 +6,25 @@
   var toggle = document.querySelector('.nav-toggle');
   var links = document.querySelector('.nav-links');
   if (toggle && links) {
-    toggle.addEventListener('click', function () {
+    var closeMenu = function () {
+      links.classList.remove('is-open');
+      toggle.setAttribute('aria-expanded', 'false');
+    };
+    toggle.addEventListener('click', function (e) {
+      e.stopPropagation();
       var isOpen = links.classList.toggle('is-open');
       toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
     });
     links.querySelectorAll('a').forEach(function (a) {
-      a.addEventListener('click', function () { links.classList.remove('is-open'); });
+      a.addEventListener('click', closeMenu);
+    });
+    document.addEventListener('click', function (e) {
+      if (links.classList.contains('is-open') && !links.contains(e.target) && !toggle.contains(e.target)) {
+        closeMenu();
+      }
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') closeMenu();
     });
   }
 
