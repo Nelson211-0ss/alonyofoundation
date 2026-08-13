@@ -2,6 +2,39 @@
 (function () {
   'use strict';
 
+  /* ---------- Mega menu ---------- */
+  var megaItems = document.querySelectorAll('[data-mega]');
+  var closeMegaMenus = function () {
+    megaItems.forEach(function (item) {
+      item.classList.remove('mega-open');
+      var btn = item.querySelector('.mega-toggle');
+      if (btn) btn.setAttribute('aria-expanded', 'false');
+    });
+  };
+  megaItems.forEach(function (item) {
+    var btn = item.querySelector('.mega-toggle');
+    if (!btn) return;
+    btn.addEventListener('click', function (e) {
+      e.preventDefault();
+      e.stopPropagation();
+      var willOpen = !item.classList.contains('mega-open');
+      closeMegaMenus();
+      if (willOpen) {
+        item.classList.add('mega-open');
+        btn.setAttribute('aria-expanded', 'true');
+      }
+    });
+  });
+  document.addEventListener('click', function (e) {
+    megaItems.forEach(function (item) {
+      if (item.classList.contains('mega-open') && !item.contains(e.target)) {
+        item.classList.remove('mega-open');
+        var btn = item.querySelector('.mega-toggle');
+        if (btn) btn.setAttribute('aria-expanded', 'false');
+      }
+    });
+  });
+
   /* ---------- Mobile nav ---------- */
   var toggle = document.querySelector('.nav-toggle');
   var links = document.querySelector('.nav-links');
@@ -9,11 +42,13 @@
     var closeMenu = function () {
       links.classList.remove('is-open');
       toggle.setAttribute('aria-expanded', 'false');
+      closeMegaMenus();
     };
     toggle.addEventListener('click', function (e) {
       e.stopPropagation();
       var isOpen = links.classList.toggle('is-open');
       toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+      if (!isOpen) closeMegaMenus();
     });
     links.querySelectorAll('a').forEach(function (a) {
       a.addEventListener('click', closeMenu);
@@ -24,8 +59,19 @@
       }
     });
     document.addEventListener('keydown', function (e) {
-      if (e.key === 'Escape') closeMenu();
+      if (e.key === 'Escape') { closeMenu(); closeMegaMenus(); }
     });
+  }
+
+  /* ---------- Preloader ---------- */
+  var preloader = document.getElementById('preloader');
+  if (preloader) {
+    setTimeout(function () {
+      preloader.classList.add('is-hidden');
+      setTimeout(function () {
+        if (preloader.parentNode) preloader.parentNode.removeChild(preloader);
+      }, 600);
+    }, 450);
   }
 
   /* ---------- Active nav link ---------- */
