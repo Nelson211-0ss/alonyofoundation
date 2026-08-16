@@ -1,45 +1,56 @@
 /* =========================================================
    Alonyo Foundation — Design System
-   Green nonprofit theme, fast/snappy motion
+   Palette matched to the logo (blue/orange/teal/pink), fast/snappy motion
+   Note: variable names kept as --green-N and --gold-N for backward
+   compatibility across the codebase, but values are now blue/orange.
    ========================================================= */
 
 :root {
-  /* Greens */
-  --green-950: #06231A;
-  --green-900: #0B3D2E;
-  --green-800: #12503C;
-  --green-700: #1B6B4A;
-  --green-600: #1F8452;
-  --green-500: #2F9E5E;
-  --green-400: #52B879;
-  --green-300: #8AD1A3;
-  --green-200: #BEE6CC;
-  --green-100: #E7F6EC;
-  --green-50:  #F3FBF5;
+  /* "Green" scale -> brand blue (from the logo wordmark, #0E74BC) */
+  --green-950: #0A2E4A;
+  --green-900: #0D4A78;
+  --green-800: #0E5C93;
+  --green-700: #0E74BC;
+  --green-600: #2286C9;
+  --green-500: #3B9AD6;
+  --green-400: #6BB3E0;
+  --green-300: #9FCCEA;
+  --green-200: #CCE4F4;
+  --green-100: #E6F3FB;
+  --green-50:  #F3FAFD;
 
   /* Warm neutrals */
   --sand-50:  #FDFBF6;
   --sand-100: #FBF7EE;
   --sand-200: #F4EEDD;
 
-  /* Accent */
-  --gold-400: #E4B85B;
-  --gold-500: #D9A441;
-  --gold-600: #B9862C;
+  /* "Gold" scale -> brand orange (from the logo, #F8931D) */
+  --gold-400: #FAA83F;
+  --gold-500: #F8931D;
+  --gold-600: #D97D0F;
 
-  /* Ink */
-  --ink-900: #16241D;
-  --ink-800: #1E2E25;
-  --ink-700: #3B4A42;
-  --ink-500: #647A6E;
-  --ink-300: #9AAAA1;
+  /* Extra logo accents, used sparingly (icon variety, tags) */
+  --teal-500: #15ACA3;
+  --teal-600: #0E8E86;
+  --teal-100: #DFF5F3;
+  --pink-500: #EB1A6B;
+  --pink-600: #C2135A;
+  --pink-100: #FCE1EC;
+  --leaf-500: #8BC741;
+
+  /* Ink (blue-tinted neutrals, replacing the old green-tinted grays) */
+  --ink-900: #15222E;
+  --ink-800: #1D2E3C;
+  --ink-700: #3C4C59;
+  --ink-500: #647685;
+  --ink-300: #9AACB8;
 
   --white: #FFFFFF;
 
   /* Elevation */
-  --shadow-sm: 0 1px 3px rgba(11, 61, 46, 0.08), 0 1px 2px rgba(11, 61, 46, 0.06);
-  --shadow-md: 0 8px 24px -6px rgba(11, 61, 46, 0.16), 0 2px 6px rgba(11, 61, 46, 0.08);
-  --shadow-lg: 0 20px 48px -12px rgba(11, 61, 46, 0.24);
+  --shadow-sm: 0 1px 3px rgba(10, 46, 74, 0.08), 0 1px 2px rgba(10, 46, 74, 0.06);
+  --shadow-md: 0 8px 24px -6px rgba(10, 46, 74, 0.16), 0 2px 6px rgba(10, 46, 74, 0.08);
+  --shadow-lg: 0 20px 48px -12px rgba(10, 46, 74, 0.24);
 
   /* Radius */
   --r-sm: 3px;
@@ -186,7 +197,7 @@ section { position: relative; }
   z-index: 100;
   background: rgba(251, 247, 238, 0.85);
   backdrop-filter: blur(10px);
-  border-bottom: 1px solid rgba(11,61,46,0.06);
+  border-bottom: 1px solid rgba(10,46,74,0.06);
   transition: box-shadow 420ms var(--ease-out), background-color 420ms var(--ease-out);
 }
 .site-header.is-scrolled { box-shadow: var(--shadow-sm); background: rgba(251, 247, 238, 0.97); }
@@ -297,11 +308,11 @@ section { position: relative; }
   content: '';
   position: absolute;
   inset: 0;
-  background-color: var(--photo-tint, rgba(6, 35, 26, 0.4));
+  background-color: var(--photo-tint, rgba(8, 30, 48, 0.4));
 }
 .photo > * { position: relative; z-index: 2; }
-.photo-dark { --photo-tint: rgba(6, 28, 20, 0.68); }
-.photo-light { --photo-tint: rgba(6, 35, 26, 0.16); }
+.photo-dark { --photo-tint: rgba(8, 30, 48, 0.68); }
+.photo-light { --photo-tint: rgba(8, 30, 48, 0.16); }
 
 .img-block.photo, .map-box.photo {
   transition: transform 500ms var(--ease-out);
@@ -335,7 +346,7 @@ section { position: relative; }
   transition: opacity 1100ms var(--ease-out);
 }
 .hero-slide.active { opacity: 1; }
-.hero-overlay { position: absolute; inset: 0; z-index: 1; background-color: rgba(6, 28, 20, 0.66); }
+.hero-overlay { position: absolute; inset: 0; z-index: 1; background-color: rgba(8, 30, 48, 0.66); }
 
 .hero-inner { position: relative; z-index: 2; max-width: 640px; animation: hero-fade-up 900ms var(--ease-out) both; }
 
@@ -356,6 +367,11 @@ section { position: relative; }
   border-radius: 8px;
   padding: 14px 20px;
   transition: background 300ms var(--ease-out), transform 300ms var(--ease-out), border-color 300ms var(--ease-out);
+}
+@media (max-width: 899px) {
+  .hero-stats { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+  .hero-stat { padding: 12px 14px; }
+  .hero-stat strong { font-size: 1.4rem; }
 }
 .hero-stat:hover { background: rgba(255,255,255,0.14); border-color: rgba(255,255,255,0.28); transform: translateY(-3px); }
 .hero-stat strong { display: block; font-family: 'Libre Baskerville', Georgia, serif; font-size: 1.7rem; color: var(--gold-400); }
@@ -391,7 +407,7 @@ section { position: relative; }
   padding: 30px;
   box-shadow: var(--shadow-sm);
   transition: transform var(--dur-base) var(--ease-out), box-shadow var(--dur-base) var(--ease-out);
-  border: 1px solid rgba(11,61,46,0.05);
+  border: 1px solid rgba(10,46,74,0.05);
 }
 .card:hover { transform: translateY(-6px); box-shadow: var(--shadow-md); }
 
@@ -423,6 +439,8 @@ section { position: relative; }
   text-align: center;
 }
 @media (max-width: 900px) { .impact-grid { grid-template-columns: repeat(2, 1fr); } }
+.impact-grid.impact-grid-3 { grid-template-columns: repeat(3, 1fr); }
+@media (max-width: 900px) { .impact-grid.impact-grid-3 { grid-template-columns: 1fr; } }
 .impact-item { padding: 28px 16px; border-radius: var(--r-md); background: rgba(255,255,255,0.06); }
 .impact-item .num {
   font-family: 'Libre Baskerville', Georgia, serif;
@@ -445,26 +463,38 @@ section { position: relative; }
 .testi-dots button { width: 9px; height: 9px; border-radius: 50%; background: var(--green-200); border: none; padding: 0; transition: background var(--dur-fast) var(--ease-out), transform var(--dur-fast) var(--ease-out); }
 .testi-dots button.active { background: var(--green-700); transform: scale(1.25); }
 
-/* ---------- CTA banner ---------- */
-.cta-banner {
-  background-color: var(--green-800);
-  border-radius: var(--r-lg);
-  padding: 56px;
+/* ---------- CTA banner (full-bleed section) ---------- */
+.cta-section {
+  padding: 90px 0;
   color: var(--white);
+  background-color: var(--green-800);
+}
+.cta-banner {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 32px;
   flex-wrap: wrap;
-  position: relative;
-  overflow: hidden;
 }
 .cta-banner h2 { color: var(--white); margin-bottom: 8px; }
 .cta-banner p { color: var(--green-100); }
+@media (max-width: 720px) {
+  .cta-section { padding: 64px 0; }
+  .cta-banner { justify-content: center; text-align: center; }
+  .cta-banner .actions { justify-content: center; }
+}
 .cta-banner .actions { display: flex; gap: 12px; flex-wrap: wrap; position: relative; z-index: 2; }
 
 /* ---------- Footer ---------- */
-.site-footer { background: var(--green-950); color: var(--green-200); padding: 56px 0 24px; border-top: 3px solid var(--gold-500); }
+.site-footer {
+  background-color: var(--green-950);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='28'%3E%3Ccircle cx='2' cy='2' r='1.4' fill='%23ffffff' fill-opacity='0.07'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  color: var(--green-200);
+  padding: 56px 0 24px;
+  border-top: 3px solid var(--gold-500);
+  position: relative;
+}
 
 .footer-newsletter {
   display: flex;
@@ -563,6 +593,8 @@ section { position: relative; }
 /* ---------- Donate tiers ---------- */
 .tier-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-bottom: 24px; }
 @media (max-width: 780px) { .tier-grid { grid-template-columns: repeat(2, 1fr); } }
+.tier-grid.tier-grid-3 { grid-template-columns: repeat(3, 1fr); }
+@media (max-width: 560px) { .tier-grid.tier-grid-3 { grid-template-columns: 1fr; } }
 .tier {
   border: 2px solid var(--green-200);
   border-radius: var(--r-md);
@@ -758,7 +790,7 @@ section { position: relative; }
   background: var(--white);
   border-radius: var(--r-md);
   box-shadow: var(--shadow-lg);
-  border: 1px solid rgba(11,61,46,0.08);
+  border: 1px solid rgba(10,46,74,0.08);
   padding: 28px;
   display: grid;
   grid-template-columns: 1.6fr 1fr;
