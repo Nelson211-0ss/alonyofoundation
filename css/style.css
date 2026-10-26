@@ -615,6 +615,29 @@ section { position: relative; }
 .freq-toggle label { padding: 9px 22px; border-radius: var(--r-pill); font-size: 0.88rem; font-weight: 600; color: var(--green-700); cursor: pointer; transition: background var(--dur-fast) var(--ease-out), color var(--dur-fast) var(--ease-out); }
 .freq-toggle input:checked + label { background: var(--green-700); color: var(--white); }
 
+.bank-box { margin-top: 36px; background: var(--white); border: 1.5px solid var(--green-200); border-radius: var(--r-md); padding: 26px 24px; }
+.bank-box-head { display: flex; align-items: center; gap: 14px; margin-bottom: 6px; }
+.bank-box-head .icon-tile { margin-bottom: 0; flex-shrink: 0; }
+.bank-box-head h3 { margin: 0; }
+.bank-details { margin: 18px 0 0; display: flex; flex-direction: column; gap: 10px; }
+.bank-row { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 12px 14px; background: var(--green-50); border-radius: var(--r-sm); }
+.bank-row dt { font-size: 0.82rem; font-weight: 600; color: var(--ink-500); }
+.bank-row dd { margin: 0; display: flex; align-items: center; gap: 10px; font-weight: 700; color: var(--green-900); text-align: right; font-variant-numeric: tabular-nums; }
+.copy-btn { display: inline-grid; place-items: center; width: 30px; height: 30px; border: 0; border-radius: var(--r-sm); background: transparent; color: var(--green-700); cursor: pointer; transition: background var(--dur-fast) var(--ease-out); }
+.copy-btn:hover { background: var(--green-100); }
+.copy-btn svg { width: 16px; height: 16px; }
+.copy-btn .icon-done { display: none; }
+.copy-btn.copied .icon-copy { display: none; }
+.copy-btn.copied .icon-done { display: block; }
+@media (max-width: 480px) {
+  .bank-row { flex-direction: column; align-items: flex-start; gap: 4px; }
+  .bank-row dd { text-align: left; }
+}
+
+/* ---------- Check lists ---------- */
+.check-list li { display: flex; align-items: flex-start; gap: 10px; }
+.check-list li svg { width: 20px; height: 20px; flex-shrink: 0; margin-top: 2px; color: var(--gold-500); }
+
 /* ---------- Timeline (About) ---------- */
 .timeline { position: relative; padding-left: 32px; border-left: 2px solid var(--green-200); }
 .timeline-item { position: relative; padding-bottom: 34px; }
